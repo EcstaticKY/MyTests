@@ -108,6 +108,7 @@
 				634C670727D8A19B00C4A59D /* AppFiles */,
 				6316F84927D0675F00FBFAEB /* Assets.xcassets */,
 				634C670B27D8A29D00C4A59D /* TextViewTestController.swift */,
+				6316F84E27D0675F00FBFAEB /* Info.plist */,
 			);
 			path = MyTestsApp;
 			sourceTree = "<group>";
@@ -143,7 +144,6 @@
 				6316F84027D0675D00FBFAEB /* AppDelegate.swift */,
 				6316F84227D0675D00FBFAEB /* SceneDelegate.swift */,
 				6316F84B27D0675F00FBFAEB /* LaunchScreen.storyboard */,
-				6316F84E27D0675F00FBFAEB /* Info.plist */,
 			);
 			path = AppFiles;
 			sourceTree = "<group>";
