@@ -18,6 +18,11 @@
 		634C670327D89A3D00C4A59D /* CustomNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634C670227D89A3D00C4A59D /* CustomNavigationController.swift */; };
 		634C670627D89B9C00C4A59D /* UIColor+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634C670527D89B9C00C4A59D /* UIColor+Hex.swift */; };
 		634C670C27D8A29D00C4A59D /* TextViewTestController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634C670B27D8A29D00C4A59D /* TextViewTestController.swift */; };
+		634C671227D8B01800C4A59D /* String+TextSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634C670D27D8B01800C4A59D /* String+TextSize.swift */; };
+		634C671327D8B01800C4A59D /* UIView+ImageNamed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634C670E27D8B01800C4A59D /* UIView+ImageNamed.swift */; };
+		634C671427D8B01800C4A59D /* UIImage+makeForTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634C670F27D8B01800C4A59D /* UIImage+makeForTest.swift */; };
+		634C671527D8B01800C4A59D /* UIView+Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634C671027D8B01800C4A59D /* UIView+Constraints.swift */; };
+		634C671627D8B01800C4A59D /* UITableView+Dequeueing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634C671127D8B01800C4A59D /* UITableView+Dequeueing.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +58,11 @@
 		634C670227D89A3D00C4A59D /* CustomNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationController.swift; sourceTree = "<group>"; };
 		634C670527D89B9C00C4A59D /* UIColor+Hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Hex.swift"; sourceTree = "<group>"; };
 		634C670B27D8A29D00C4A59D /* TextViewTestController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextViewTestController.swift; sourceTree = "<group>"; };
+		634C670D27D8B01800C4A59D /* String+TextSize.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+TextSize.swift"; sourceTree = "<group>"; };
+		634C670E27D8B01800C4A59D /* UIView+ImageNamed.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+ImageNamed.swift"; sourceTree = "<group>"; };
+		634C670F27D8B01800C4A59D /* UIImage+makeForTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+makeForTest.swift"; sourceTree = "<group>"; };
+		634C671027D8B01800C4A59D /* UIView+Constraints.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Constraints.swift"; sourceTree = "<group>"; };
+		634C671127D8B01800C4A59D /* UITableView+Dequeueing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableView+Dequeueing.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,6 +143,11 @@
 		634C670427D89B8900C4A59D /* UI+Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				634C670D27D8B01800C4A59D /* String+TextSize.swift */,
+				634C670F27D8B01800C4A59D /* UIImage+makeForTest.swift */,
+				634C671127D8B01800C4A59D /* UITableView+Dequeueing.swift */,
+				634C671027D8B01800C4A59D /* UIView+Constraints.swift */,
+				634C670E27D8B01800C4A59D /* UIView+ImageNamed.swift */,
 				634C670527D89B9C00C4A59D /* UIColor+Hex.swift */,
 			);
 			path = "UI+Extensions";
@@ -292,7 +307,12 @@
 				6316F84127D0675D00FBFAEB /* AppDelegate.swift in Sources */,
 				634C670C27D8A29D00C4A59D /* TextViewTestController.swift in Sources */,
 				6316F84327D0675D00FBFAEB /* SceneDelegate.swift in Sources */,
+				634C671427D8B01800C4A59D /* UIImage+makeForTest.swift in Sources */,
 				634C670627D89B9C00C4A59D /* UIColor+Hex.swift in Sources */,
+				634C671627D8B01800C4A59D /* UITableView+Dequeueing.swift in Sources */,
+				634C671527D8B01800C4A59D /* UIView+Constraints.swift in Sources */,
+				634C671327D8B01800C4A59D /* UIView+ImageNamed.swift in Sources */,
+				634C671227D8B01800C4A59D /* String+TextSize.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
