@@ -42,24 +42,58 @@ class TextViewTestController: UIViewController {
         }
     }
     
+    @objc private func handleTap(sender: UITapGestureRecognizer) {
+        if let textView = sender.view as? UITextView {
+            let layoutManager = textView.layoutManager
+            var location = sender.location(in: textView)
+            location.x -= textView.textContainerInset.left
+            location.y -= textView.textContainerInset.top
+            
+            let characterIndex = layoutManager.characterIndex(for: location, in: textView.textContainer, fractionOfDistanceBetweenInsertionPoints: nil)
+            
+            guard let text = textView.text else { return }
+            print(text)
+            
+            if characterIndex < textView.textStorage.length {
+                print(characterIndex)
+            }
+        }
+    }
+    
     private lazy var myTextView: UITextView = {
         let textView = UITextView()
         textView.font = .systemFont(ofSize: 16)
         textView.backgroundColor = .lightGray
         textView.layer.cornerRadius = 2
         textView.layer.masksToBounds = true
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(handleTap))
+        textView.addGestureRecognizer(tap)
+        tap.delegate = self
+        
+        textView.isUserInteractionEnabled = true
         textView.translatesAutoresizingMaskIntoConstraints = false
         return textView
     }()
     
     private lazy var resignButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("RESIGN", for: .normal)
-        button.setTitleColor(.black, for: .normal)
-        button.backgroundColor = .cyan
+        
+        var configuration = UIButton.Configuration.filled()
+        configuration.title = "RESIGN"
+        configuration.subtitle = "Great Try"
+        configuration.image = UIImage(systemName: "swift")
+        
+        let button = UIButton(configuration: configuration, primaryAction: nil)
         button.addTarget(self, action: #selector(resign), for: .touchUpInside)
-        button.contentEdgeInsets = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
+
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
+}
+
+extension TextViewTestController: UIGestureRecognizerDelegate {
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer,
+                           shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        true
+    }
 }
