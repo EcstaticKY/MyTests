@@ -20,6 +20,7 @@ class TextViewTestController: UIViewController {
         view.backgroundColor = .white
         view.addSubview(myTextView)
         view.addSubview(resignButton)
+        view.addSubview(htmlTextButton)
     }
     
     private func setupConstraints() {
@@ -27,12 +28,17 @@ class TextViewTestController: UIViewController {
             myTextView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             myTextView.topAnchor.constraint(equalTo: view.topAnchor, constant: 100),
             myTextView.widthAnchor.constraint(equalToConstant: 300),
-            myTextView.heightAnchor.constraint(equalToConstant: 27),
+            myTextView.heightAnchor.constraint(equalToConstant: 30),
             
             resignButton.leadingAnchor.constraint(equalTo: myTextView.leadingAnchor),
-            resignButton.topAnchor.constraint(equalTo: myTextView.bottomAnchor, constant: 20)
+            resignButton.topAnchor.constraint(equalTo: myTextView.bottomAnchor, constant: 20),
+            
+            htmlTextButton.leadingAnchor.constraint(equalTo: resignButton.trailingAnchor, constant: 40),
+            htmlTextButton.topAnchor.constraint(equalTo: myTextView.bottomAnchor, constant: 20),
         ])
     }
+    
+    // MARK: - Button Action
     
     @objc private func resign() {
         if myTextView.isFirstResponder {
@@ -40,6 +46,18 @@ class TextViewTestController: UIViewController {
         } else {
             myTextView.becomeFirstResponder()
         }
+    }
+    
+    @objc private func giveHTML() {
+        let htmlString = "www.google.com"
+        let string = NSMutableAttributedString(string: htmlString)
+        let attributes: [NSAttributedString.Key: Any] = [
+            .foregroundColor : UIColor.blue,
+            .font : UIFont.systemFont(ofSize: 16)
+        ]
+        string.addAttributes(attributes, range: NSRange(location: 0, length: htmlString.count))
+        
+        myTextView.attributedText = string
     }
     
     @objc private func handleTap(sender: UITapGestureRecognizer) {
@@ -60,6 +78,7 @@ class TextViewTestController: UIViewController {
         }
     }
     
+    
     private lazy var myTextView: UITextView = {
         let textView = UITextView()
         textView.font = .systemFont(ofSize: 16)
@@ -69,6 +88,7 @@ class TextViewTestController: UIViewController {
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(handleTap))
         textView.addGestureRecognizer(tap)
+        textView.delegate = self
         tap.delegate = self
         
         textView.isUserInteractionEnabled = true
@@ -89,11 +109,43 @@ class TextViewTestController: UIViewController {
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
+    
+    private lazy var htmlTextButton: UIButton = {
+        
+        var configuration = UIButton.Configuration.filled()
+        configuration.title = "html button"
+        
+        let button = UIButton(configuration: configuration, primaryAction: nil)
+        button.addTarget(self, action: #selector(giveHTML), for: .touchUpInside)
+
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+    
+    private lazy var newTextViewButton: UIButton = {
+        var configuration = UIButton.Configuration.filled()
+        configuration.title = "RESIGN"
+        configuration.subtitle = "Great Try"
+        configuration.image = UIImage(systemName: "swift")
+        
+        let button = UIButton(configuration: configuration, primaryAction: nil)
+        button.addTarget(self, action: #selector(resign), for: .touchUpInside)
+
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
 }
 
 extension TextViewTestController: UIGestureRecognizerDelegate {
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer,
                            shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         true
+    }
+}
+
+extension TextViewTestController: UITextViewDelegate {
+    func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
+        // perform your checks and choose what to do with the result.
+        false
     }
 }
