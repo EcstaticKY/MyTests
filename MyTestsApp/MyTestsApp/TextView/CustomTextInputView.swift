@@ -10,11 +10,21 @@ import UIKit
 class CustomTextInputView: UIView {
     
     static func inputView() -> CustomTextInputView {
-        CustomTextInputView(frame: CGRect(x: 0, y: screenHeight, width: screenWidth, height: 50))
+        print("height: \(screenHeight)")
+        return CustomTextInputView(frame: CGRect(x: 0, y: screenHeight - 50, width: screenWidth, height: 50))
+    }
+    
+    func beginEditing() {
+        if textInputView.canBecomeFirstResponder {
+            textInputView.becomeFirstResponder()
+        }
     }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        
         setupView()
         setupConstraints()
     }
@@ -24,7 +34,9 @@ class CustomTextInputView: UIView {
     }
     
     private func setupView() {
+        backgroundColor = UIColor(hex: "#EEEEEE")
         addSubview(textInputView)
+        addSubview(emojiButton)
     }
     
     private func setupConstraints() {
@@ -41,9 +53,17 @@ class CustomTextInputView: UIView {
         ])
     }
     
+    @objc private func keyboardWillShow(sender: Notification) {
+        let userInfo = sender.userInfo!
+        let value = userInfo[UIResponder.keyboardFrameBeginUserInfoKey] as! CGRect
+        let keyboardSize = value.size
+        
+        self.transform = CGAffineTransform(translationX: 0, y: -keyboardSize.height)
+    }
+    
     private lazy var emojiButton: UIButton = {
         var configuration = UIButton.Configuration.plain()
-        configuration.image = UIImage(systemName: "grinning face")
+        configuration.image = UIImage(systemName: "swift")
         let button = UIButton(configuration: configuration, primaryAction: nil)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
@@ -51,6 +71,7 @@ class CustomTextInputView: UIView {
     
     private lazy var textInputView: UITextView = {
         let textView = UITextView()
+        textView.backgroundColor = .white
         textView.translatesAutoresizingMaskIntoConstraints = false
         return textView
     }()

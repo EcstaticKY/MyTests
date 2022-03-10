@@ -22,6 +22,8 @@ class TextViewTestController: UIViewController {
         view.addSubview(resignButton)
         view.addSubview(htmlTextButton)
         view.addSubview(newTextViewButton)
+        
+        keyWindow?.addSubview(customTextInputView)
     }
     
     private func setupConstraints() {
@@ -65,7 +67,8 @@ class TextViewTestController: UIViewController {
     }
     
     @objc private func newTextView() {
-        
+        customTextInputView.isHidden = false
+        customTextInputView.beginEditing()
     }
     
     @objc private func handleTap(sender: UITapGestureRecognizer) {
@@ -143,6 +146,12 @@ class TextViewTestController: UIViewController {
 
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
+    }()
+    
+    private lazy var customTextInputView: CustomTextInputView = {
+        let inputView = CustomTextInputView.inputView()
+        inputView.isHidden = true
+        return inputView
     }()
 }
 
