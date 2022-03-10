@@ -21,6 +21,7 @@ class TextViewTestController: UIViewController {
         view.addSubview(myTextView)
         view.addSubview(resignButton)
         view.addSubview(htmlTextButton)
+        view.addSubview(newTextViewButton)
     }
     
     private func setupConstraints() {
@@ -35,6 +36,9 @@ class TextViewTestController: UIViewController {
             
             htmlTextButton.leadingAnchor.constraint(equalTo: resignButton.trailingAnchor, constant: 40),
             htmlTextButton.topAnchor.constraint(equalTo: myTextView.bottomAnchor, constant: 20),
+            
+            newTextViewButton.leadingAnchor.constraint(equalTo: resignButton.leadingAnchor),
+            newTextViewButton.topAnchor.constraint(equalTo: resignButton.bottomAnchor, constant: 20),
         ])
     }
     
@@ -60,6 +64,10 @@ class TextViewTestController: UIViewController {
         myTextView.attributedText = string
     }
     
+    @objc private func newTextView() {
+        
+    }
+    
     @objc private func handleTap(sender: UITapGestureRecognizer) {
         if let textView = sender.view as? UITextView {
             let layoutManager = textView.layoutManager
@@ -78,7 +86,6 @@ class TextViewTestController: UIViewController {
         }
     }
     
-    
     private lazy var myTextView: UITextView = {
         let textView = UITextView()
         textView.font = .systemFont(ofSize: 16)
@@ -90,6 +97,10 @@ class TextViewTestController: UIViewController {
         textView.addGestureRecognizer(tap)
         textView.delegate = self
         tap.delegate = self
+        
+        let toolbarView = UIView(frame: CGRect(x: 0, y: 0, width: screenWidth, height: 20))
+        toolbarView.backgroundColor = .cyan
+        textView.inputAccessoryView = toolbarView
         
         textView.isUserInteractionEnabled = true
         textView.translatesAutoresizingMaskIntoConstraints = false
@@ -124,12 +135,11 @@ class TextViewTestController: UIViewController {
     
     private lazy var newTextViewButton: UIButton = {
         var configuration = UIButton.Configuration.filled()
-        configuration.title = "RESIGN"
-        configuration.subtitle = "Great Try"
+        configuration.title = "New Input"
         configuration.image = UIImage(systemName: "swift")
         
         let button = UIButton(configuration: configuration, primaryAction: nil)
-        button.addTarget(self, action: #selector(resign), for: .touchUpInside)
+        button.addTarget(self, action: #selector(newTextView), for: .touchUpInside)
 
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
