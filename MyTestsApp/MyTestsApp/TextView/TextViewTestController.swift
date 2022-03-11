@@ -14,6 +14,7 @@ class TextViewTestController: UIViewController {
         
         setupView()
         setupConstraints()
+        addObservers()
     }
     
     private func setupView() {
@@ -42,6 +43,10 @@ class TextViewTestController: UIViewController {
             newTextViewButton.leadingAnchor.constraint(equalTo: resignButton.leadingAnchor),
             newTextViewButton.topAnchor.constraint(equalTo: resignButton.bottomAnchor, constant: 20),
         ])
+    }
+    
+    private func addObservers() {
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
     }
     
     // MARK: - Button Action
@@ -153,10 +158,26 @@ class TextViewTestController: UIViewController {
         inputView.isHidden = true
         return inputView
     }()
+    
+    private let maskViewWhileInputing: UIView = {
+        let view = UIView(frame: UIScreen.main.bounds)
+        return view
+    }()
+}
+
+extension TextViewTestController {
+    @objc func keyboardWillShow(sender: Notification) {
+        view.addSubview(maskViewWhileInputing)
+        
+        let userInfo = sender.userInfo!
+        let value = userInfo[UIResponder.keyboardFrameBeginUserInfoKey] as! CGRect
+        let keyboardSize = value.size
+        customTextInputView.transform = CGAffineTransform(translationX: 0, y: -keyboardSize.height)
+    }
 }
 
 extension TextViewTestController: UIGestureRecognizerDelegate {
-    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer,
+    @objc func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer,
                            shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         true
     }

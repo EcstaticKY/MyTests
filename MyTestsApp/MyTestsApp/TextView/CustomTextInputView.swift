@@ -23,8 +23,6 @@ class CustomTextInputView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
-        
         setupView()
         setupConstraints()
     }
@@ -51,14 +49,6 @@ class CustomTextInputView: UIView {
             textInputView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10),
             textInputView.heightAnchor.constraint(equalToConstant: 40)
         ])
-    }
-    
-    @objc private func keyboardWillShow(sender: Notification) {
-        let userInfo = sender.userInfo!
-        let value = userInfo[UIResponder.keyboardFrameBeginUserInfoKey] as! CGRect
-        let keyboardSize = value.size
-        
-        self.transform = CGAffineTransform(translationX: 0, y: -keyboardSize.height)
     }
     
     private lazy var emojiButton: UIButton = {
