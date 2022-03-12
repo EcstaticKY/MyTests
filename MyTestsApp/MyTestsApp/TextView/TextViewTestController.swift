@@ -47,6 +47,7 @@ class TextViewTestController: UIViewController {
     
     private func addObservers() {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+//        NotificationCenter.default.addObserver(self, selector: #selector(keyboardNotification), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
     }
     
     // MARK: - UI Events
@@ -163,7 +164,7 @@ class TextViewTestController: UIViewController {
     
     private lazy var maskViewWhileInputing: UIView = {
         let view = UIView(frame: UIScreen.main.bounds)
-        view.backgroundColor = CustomColor.burgundyRed
+        view.backgroundColor = .clear
         view.isUserInteractionEnabled = true
         let tap = UITapGestureRecognizer(target: self, action: #selector(didTapMask))
         view.addGestureRecognizer(tap)
@@ -173,13 +174,39 @@ class TextViewTestController: UIViewController {
 
 extension TextViewTestController {
     @objc func keyboardWillShow(sender: Notification) {
-        view.addSubview(maskViewWhileInputing)
-
-        let userInfo = sender.userInfo!
-        let value = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as! CGRect
-        let keyboardSize = value.size
-        print("keyboard height: \(keyboardSize.height)")
-        self.customTextInputView.frame = CGRect(x: 0, y: screenHeight - keyboardSize.height - 50, width: screenWidth, height: 50)
+        
+        if let userInfo = sender.userInfo, let keyboardEndFrame = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect {
+            view.addSubview(maskViewWhileInputing)
+            let keyboardHeight = keyboardEndFrame.size.height
+            customTextInputView.frame = CGRect(x: 0, y: screenHeight - keyboardHeight - 50, width: screenWidth, height: 50)
+        }
+    }
+    
+    @objc private func keyboardNotification(notification: NSNotification) {
+        if let userInfo = notification.userInfo {
+            view.addSubview(maskViewWhileInputing)
+            let endFrame = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue
+            let endFrameY = endFrame?.origin.y ?? 0
+            let duration:TimeInterval = (userInfo[UIResponder.keyboardAnimationDurationUserInfoKey] as? NSNumber)?.doubleValue ?? 0
+            let animationCurveRawNSN = userInfo[UIResponder.keyboardAnimationCurveUserInfoKey] as? NSNumber
+            let animationCurveRaw = animationCurveRawNSN?.uintValue ?? UIView.AnimationOptions.curveEaseInOut.rawValue
+            let animationCurve:UIView.AnimationOptions = UIView.AnimationOptions(rawValue: animationCurveRaw)
+            if endFrameY >= UIScreen.main.bounds.size.height {
+                //Change This
+                //self.signInButtonBottomConstraint?.constant = 0.0
+                customTextInputView.frame = CGRect(x: 0, y: screenHeight, width: screenWidth, height: 50)
+            } else {
+                //Modify This
+                //self.signInButtonBottomConstraint?.constant -= (endFrame?.size.height ?? 0.0)
+                let keyboardHeight = endFrame?.size.height ?? 0.0
+                customTextInputView.frame = CGRect(x: 0, y: screenHeight - keyboardHeight - 50, width: screenWidth, height: 50)
+            }
+            UIView.animate(withDuration: duration,
+                           delay: TimeInterval(0),
+                           options: animationCurve,
+                           animations: { self.view.layoutIfNeeded() },
+                           completion: nil)
+        }
     }
 }
 
