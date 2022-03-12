@@ -18,6 +18,11 @@ class CustomTextInputView: UIView {
         textInputView.becomeFirstResponder()
     }
     
+    func endEditing() {
+        textInputView.resignFirstResponder()
+        frame = CGRect(x: 0, y: screenHeight - 50, width: screenWidth, height: 50)
+    }
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         

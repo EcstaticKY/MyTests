@@ -94,8 +94,8 @@ class TextViewTestController: UIViewController {
         }
     }
     
-    @objc private func didTapMask(sender: UITapGestureRecognizer) {
-        customTextInputView.endEditing(true)
+    @objc private func didTapMask() {
+        customTextInputView.endEditing()
         customTextInputView.isHidden = true
         maskViewWhileInputing.removeFromSuperview()
     }
@@ -161,7 +161,7 @@ class TextViewTestController: UIViewController {
         return inputView
     }()
     
-    private let maskViewWhileInputing: UIView = {
+    private lazy var maskViewWhileInputing: UIView = {
         let view = UIView(frame: UIScreen.main.bounds)
         view.backgroundColor = CustomColor.burgundyRed
         view.isUserInteractionEnabled = true
@@ -176,9 +176,10 @@ extension TextViewTestController {
         view.addSubview(maskViewWhileInputing)
 
         let userInfo = sender.userInfo!
-        let value = userInfo[UIResponder.keyboardFrameBeginUserInfoKey] as! CGRect
+        let value = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as! CGRect
         let keyboardSize = value.size
-        customTextInputView.transform = CGAffineTransform(translationX: 0, y: -keyboardSize.height)
+        print("keyboard height: \(keyboardSize.height)")
+        self.customTextInputView.frame = CGRect(x: 0, y: screenHeight - keyboardSize.height - 50, width: screenWidth, height: 50)
     }
 }
 
