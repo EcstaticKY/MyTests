@@ -5,6 +5,8 @@
 //  Created by Kanyan Zheng on 2022/3/12.
 //
 
+// https://www.zhihu.com/question/497851000/answer/2249878929
+
 import UIKit
 
 struct BeautifulColor {

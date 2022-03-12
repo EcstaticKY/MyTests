@@ -49,7 +49,7 @@ class TextViewTestController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
     }
     
-    // MARK: - Button Action
+    // MARK: - UI Events
     
     @objc private func resign() {
         if myTextView.isFirstResponder {
@@ -94,6 +94,14 @@ class TextViewTestController: UIViewController {
         }
     }
     
+    @objc private func didTapMask(sender: UITapGestureRecognizer) {
+        customTextInputView.endEditing(true)
+        customTextInputView.isHidden = true
+        maskViewWhileInputing.removeFromSuperview()
+    }
+    
+    // MARK: - Lazy Views
+    
     private lazy var myTextView: UITextView = {
         let textView = UITextView()
         textView.font = .systemFont(ofSize: 16)
@@ -119,12 +127,7 @@ class TextViewTestController: UIViewController {
         
         let button = UIButton()
         button.setTitle("RESIGN", for: .normal)
-//        var configuration = UIButton.Configuration.filled()
-//        configuration.title = "RESIGN"
-//        configuration.subtitle = "Great Try"
-//        configuration.image = UIImage(systemName: "swift")
-        
-//        let button = UIButton(configuration: configuration, primaryAction: nil)
+        button.setTitleColor(CustomColor.starBlue, for: .normal)
         button.addTarget(self, action: #selector(resign), for: .touchUpInside)
 
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -135,10 +138,7 @@ class TextViewTestController: UIViewController {
         
         let button = UIButton()
         button.setTitle("Give HTML", for: .normal)
-//        var configuration = UIButton.Configuration.filled()
-//        configuration.title = "html button"
-//
-//        let button = UIButton(configuration: configuration, primaryAction: nil)
+        button.setTitleColor(CustomColor.prussianBlue, for: .normal)
         button.addTarget(self, action: #selector(giveHTML), for: .touchUpInside)
 
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -148,12 +148,7 @@ class TextViewTestController: UIViewController {
     private lazy var newTextViewButton: UIButton = {
         let button = UIButton()
         button.setTitle("New Input", for: .normal)
-        
-//        var configuration = UIButton.Configuration.filled()
-//        configuration.title = "New Input"
-//        configuration.image = UIImage(systemName: "swift")
-//
-//        let button = UIButton(configuration: configuration, primaryAction: nil)
+        button.setTitleColor(CustomColor.bambooGreen, for: .normal)
         button.addTarget(self, action: #selector(newTextView), for: .touchUpInside)
 
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -168,6 +163,10 @@ class TextViewTestController: UIViewController {
     
     private let maskViewWhileInputing: UIView = {
         let view = UIView(frame: UIScreen.main.bounds)
+        view.backgroundColor = CustomColor.burgundyRed
+        view.isUserInteractionEnabled = true
+        let tap = UITapGestureRecognizer(target: self, action: #selector(didTapMask))
+        view.addGestureRecognizer(tap)
         return view
     }()
 }
@@ -175,7 +174,7 @@ class TextViewTestController: UIViewController {
 extension TextViewTestController {
     @objc func keyboardWillShow(sender: Notification) {
         view.addSubview(maskViewWhileInputing)
-        
+
         let userInfo = sender.userInfo!
         let value = userInfo[UIResponder.keyboardFrameBeginUserInfoKey] as! CGRect
         let keyboardSize = value.size

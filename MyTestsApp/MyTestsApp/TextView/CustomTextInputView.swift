@@ -15,9 +15,7 @@ class CustomTextInputView: UIView {
     }
     
     func beginEditing() {
-        if textInputView.canBecomeFirstResponder {
-            textInputView.becomeFirstResponder()
-        }
+        textInputView.becomeFirstResponder()
     }
     
     override init(frame: CGRect) {

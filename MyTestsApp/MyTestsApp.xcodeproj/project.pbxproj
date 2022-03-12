@@ -27,6 +27,7 @@
 		634C671A27D9D2C300C4A59D /* UIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634C671927D9D2C300C4A59D /* UIConstants.swift */; };
 		63B011D827DC395200A7854B /* BeautifulColorVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B011D727DC395200A7854B /* BeautifulColorVC.swift */; };
 		63B011DB27DC3DA000A7854B /* CustomColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B011DA27DC3DA000A7854B /* CustomColor.swift */; };
+		63B011DE27DC7BD600A7854B /* GestureTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B011DD27DC7BD600A7854B /* GestureTestViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +72,7 @@
 		634C671927D9D2C300C4A59D /* UIConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIConstants.swift; sourceTree = "<group>"; };
 		63B011D727DC395200A7854B /* BeautifulColorVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeautifulColorVC.swift; sourceTree = "<group>"; };
 		63B011DA27DC3DA000A7854B /* CustomColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomColor.swift; sourceTree = "<group>"; };
+		63B011DD27DC7BD600A7854B /* GestureTestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GestureTestViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,10 +123,11 @@
 		6316F83F27D0675D00FBFAEB /* MyTestsApp */ = {
 			isa = PBXGroup;
 			children = (
-				63B011D927DC3D8D00A7854B /* Beautiful Color */,
+				63B011DC27DC7BBC00A7854B /* Gestures */,
 				634C670827D8A1B500C4A59D /* Router & Navigation */,
-				634C670427D89B8900C4A59D /* UI+Extensions */,
+				63B011D927DC3D8D00A7854B /* Beautiful Color */,
 				634C671B27D9D99F00C4A59D /* TextView */,
+				634C670427D89B8900C4A59D /* UI+Extensions */,
 				634C670727D8A19B00C4A59D /* AppFiles */,
 				6316F84927D0675F00FBFAEB /* Assets.xcassets */,
 				6316F84E27D0675F00FBFAEB /* Info.plist */,
@@ -198,6 +201,14 @@
 				63B011DA27DC3DA000A7854B /* CustomColor.swift */,
 			);
 			path = "Beautiful Color";
+			sourceTree = "<group>";
+		};
+		63B011DC27DC7BBC00A7854B /* Gestures */ = {
+			isa = PBXGroup;
+			children = (
+				63B011DD27DC7BD600A7854B /* GestureTestViewController.swift */,
+			);
+			path = Gestures;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -338,6 +349,7 @@
 				634C670C27D8A29D00C4A59D /* TextViewTestController.swift in Sources */,
 				634C671A27D9D2C300C4A59D /* UIConstants.swift in Sources */,
 				6316F84327D0675D00FBFAEB /* SceneDelegate.swift in Sources */,
+				63B011DE27DC7BD600A7854B /* GestureTestViewController.swift in Sources */,
 				63B011DB27DC3DA000A7854B /* CustomColor.swift in Sources */,
 				634C671427D8B01800C4A59D /* UIImage+makeForTest.swift in Sources */,
 				634C670627D89B9C00C4A59D /* UIColor+Hex.swift in Sources */,

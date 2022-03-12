@@ -22,6 +22,7 @@ class RouterViewController: UIViewController {
         
         view.addSubview(gotoTextViewButton)
         view.addSubview(gotoBeautifulColorsButton)
+        view.addSubview(goToGestureButton)
     }
     
     private func setupConstraints() {
@@ -31,6 +32,9 @@ class RouterViewController: UIViewController {
             
             gotoBeautifulColorsButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             gotoBeautifulColorsButton.topAnchor.constraint(equalTo: gotoTextViewButton.bottomAnchor, constant: 20),
+            
+            goToGestureButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            goToGestureButton.topAnchor.constraint(equalTo: gotoBeautifulColorsButton.bottomAnchor, constant: 20),
         ])
     }
     
@@ -42,6 +46,9 @@ class RouterViewController: UIViewController {
         case 1:
             let vc = BeautifulColorVC()
             self.navigationController?.pushViewController(vc, animated: false)
+        case 2:
+            let vc = GestureTestViewController()
+            self.navigationController?.pushViewController(vc, animated: false)
         default:
             break
         }
@@ -51,7 +58,7 @@ class RouterViewController: UIViewController {
     private lazy var gotoTextViewButton: UIButton = {
         let button = UIButton()
         button.setTitle("Go to text view", for: .normal)
-        button.setTitleColor(.secondaryLabel, for: .normal)
+        button.setTitleColor(CustomColor.amaranthPurple, for: .normal)
         button.tag = 0
         button.addTarget(self, action: #selector(goto), for: .touchUpInside)
         
@@ -62,8 +69,19 @@ class RouterViewController: UIViewController {
     private lazy var gotoBeautifulColorsButton: UIButton = {
         let button = UIButton()
         button.setTitle("Go to beautiful colors", for: .normal)
-        button.setTitleColor(.secondaryLabel, for: .normal)
+        button.setTitleColor(CustomColor.amaranthPurple, for: .normal)
         button.tag = 1
+        button.addTarget(self, action: #selector(goto), for: .touchUpInside)
+        
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+    
+    private lazy var goToGestureButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("Gesture", for: .normal)
+        button.setTitleColor(CustomColor.amaranthPurple, for: .normal)
+        button.tag = 2
         button.addTarget(self, action: #selector(goto), for: .touchUpInside)
         
         button.translatesAutoresizingMaskIntoConstraints = false
