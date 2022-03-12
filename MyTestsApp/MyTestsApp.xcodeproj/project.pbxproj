@@ -25,6 +25,8 @@
 		634C671627D8B01800C4A59D /* UITableView+Dequeueing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634C671127D8B01800C4A59D /* UITableView+Dequeueing.swift */; };
 		634C671827D9CA3F00C4A59D /* CustomTextInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634C671727D9CA3F00C4A59D /* CustomTextInputView.swift */; };
 		634C671A27D9D2C300C4A59D /* UIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634C671927D9D2C300C4A59D /* UIConstants.swift */; };
+		63B011D827DC395200A7854B /* BeautifulColorVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B011D727DC395200A7854B /* BeautifulColorVC.swift */; };
+		63B011DB27DC3DA000A7854B /* CustomColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B011DA27DC3DA000A7854B /* CustomColor.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +69,8 @@
 		634C671127D8B01800C4A59D /* UITableView+Dequeueing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableView+Dequeueing.swift"; sourceTree = "<group>"; };
 		634C671727D9CA3F00C4A59D /* CustomTextInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextInputView.swift; sourceTree = "<group>"; };
 		634C671927D9D2C300C4A59D /* UIConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIConstants.swift; sourceTree = "<group>"; };
+		63B011D727DC395200A7854B /* BeautifulColorVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeautifulColorVC.swift; sourceTree = "<group>"; };
+		63B011DA27DC3DA000A7854B /* CustomColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomColor.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,6 +121,7 @@
 		6316F83F27D0675D00FBFAEB /* MyTestsApp */ = {
 			isa = PBXGroup;
 			children = (
+				63B011D927DC3D8D00A7854B /* Beautiful Color */,
 				634C670827D8A1B500C4A59D /* Router & Navigation */,
 				634C670427D89B8900C4A59D /* UI+Extensions */,
 				634C671B27D9D99F00C4A59D /* TextView */,
@@ -184,6 +189,15 @@
 				634C671727D9CA3F00C4A59D /* CustomTextInputView.swift */,
 			);
 			path = TextView;
+			sourceTree = "<group>";
+		};
+		63B011D927DC3D8D00A7854B /* Beautiful Color */ = {
+			isa = PBXGroup;
+			children = (
+				63B011D727DC395200A7854B /* BeautifulColorVC.swift */,
+				63B011DA27DC3DA000A7854B /* CustomColor.swift */,
+			);
+			path = "Beautiful Color";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -318,11 +332,13 @@
 			files = (
 				634C670327D89A3D00C4A59D /* CustomNavigationController.swift in Sources */,
 				6316F84527D0675D00FBFAEB /* RouterViewController.swift in Sources */,
+				63B011D827DC395200A7854B /* BeautifulColorVC.swift in Sources */,
 				634C671827D9CA3F00C4A59D /* CustomTextInputView.swift in Sources */,
 				6316F84127D0675D00FBFAEB /* AppDelegate.swift in Sources */,
 				634C670C27D8A29D00C4A59D /* TextViewTestController.swift in Sources */,
 				634C671A27D9D2C300C4A59D /* UIConstants.swift in Sources */,
 				6316F84327D0675D00FBFAEB /* SceneDelegate.swift in Sources */,
+				63B011DB27DC3DA000A7854B /* CustomColor.swift in Sources */,
 				634C671427D8B01800C4A59D /* UIImage+makeForTest.swift in Sources */,
 				634C670627D89B9C00C4A59D /* UIColor+Hex.swift in Sources */,
 				634C671627D8B01800C4A59D /* UITableView+Dequeueing.swift in Sources */,
@@ -427,7 +443,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -482,7 +498,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -507,6 +523,7 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -535,6 +552,7 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

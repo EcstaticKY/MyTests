@@ -117,12 +117,14 @@ class TextViewTestController: UIViewController {
     
     private lazy var resignButton: UIButton = {
         
-        var configuration = UIButton.Configuration.filled()
-        configuration.title = "RESIGN"
-        configuration.subtitle = "Great Try"
-        configuration.image = UIImage(systemName: "swift")
+        let button = UIButton()
+        button.setTitle("RESIGN", for: .normal)
+//        var configuration = UIButton.Configuration.filled()
+//        configuration.title = "RESIGN"
+//        configuration.subtitle = "Great Try"
+//        configuration.image = UIImage(systemName: "swift")
         
-        let button = UIButton(configuration: configuration, primaryAction: nil)
+//        let button = UIButton(configuration: configuration, primaryAction: nil)
         button.addTarget(self, action: #selector(resign), for: .touchUpInside)
 
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -131,10 +133,12 @@ class TextViewTestController: UIViewController {
     
     private lazy var htmlTextButton: UIButton = {
         
-        var configuration = UIButton.Configuration.filled()
-        configuration.title = "html button"
-        
-        let button = UIButton(configuration: configuration, primaryAction: nil)
+        let button = UIButton()
+        button.setTitle("Give HTML", for: .normal)
+//        var configuration = UIButton.Configuration.filled()
+//        configuration.title = "html button"
+//
+//        let button = UIButton(configuration: configuration, primaryAction: nil)
         button.addTarget(self, action: #selector(giveHTML), for: .touchUpInside)
 
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -142,11 +146,14 @@ class TextViewTestController: UIViewController {
     }()
     
     private lazy var newTextViewButton: UIButton = {
-        var configuration = UIButton.Configuration.filled()
-        configuration.title = "New Input"
-        configuration.image = UIImage(systemName: "swift")
+        let button = UIButton()
+        button.setTitle("New Input", for: .normal)
         
-        let button = UIButton(configuration: configuration, primaryAction: nil)
+//        var configuration = UIButton.Configuration.filled()
+//        configuration.title = "New Input"
+//        configuration.image = UIImage(systemName: "swift")
+//
+//        let button = UIButton(configuration: configuration, primaryAction: nil)
         button.addTarget(self, action: #selector(newTextView), for: .touchUpInside)
 
         button.translatesAutoresizingMaskIntoConstraints = false

@@ -30,3 +30,7 @@ extension UIColor {
                      alpha: alpha)
     }
 }
+
+extension UIColor {
+    static let bordeauxRed = UIColor(hex: "#4c0009")
+}

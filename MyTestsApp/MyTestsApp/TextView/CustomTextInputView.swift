@@ -52,9 +52,12 @@ class CustomTextInputView: UIView {
     }
     
     private lazy var emojiButton: UIButton = {
-        var configuration = UIButton.Configuration.plain()
-        configuration.image = UIImage(systemName: "swift")
-        let button = UIButton(configuration: configuration, primaryAction: nil)
+        
+        let button = UIButton()
+        button.setTitle("emoji", for: .normal)
+//        var configuration = UIButton.Configuration.plain()
+//        configuration.image = UIImage(systemName: "swift")
+//        let button = UIButton(configuration: configuration, primaryAction: nil)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
